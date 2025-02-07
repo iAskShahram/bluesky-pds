@@ -1,10 +1,11 @@
-FROM node:20.11-alpine3.18
+FROM node:20.11-slim
 
-# Install curl and bash
-RUN apk add --no-cache curl bash
+# Install wget and bash (bash is included in Ubuntu by default)
+RUN apt-get install -y wget && \
+    rm -rf /var/lib/apt/lists/*
 
 # Download and run the installer script
-RUN curl https://raw.githubusercontent.com/bluesky-social/pds/main/installer.sh > installer.sh && \
+RUN wget https://raw.githubusercontent.com/bluesky-social/pds/main/installer.sh && \
     bash installer.sh
 
 # Set default command
