@@ -5,7 +5,7 @@ RUN npm install -g pnpm
 # Move files into the image and install
 WORKDIR /app
 COPY ./service ./
-RUN pnpm install --production --frozen-lockfile
+RUN pnpm install --production
 
 # Uses assets from build stage to reduce build size
 FROM node:20.11-alpine3.18
